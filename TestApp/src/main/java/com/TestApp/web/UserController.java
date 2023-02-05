@@ -1,5 +1,6 @@
 package com.TestApp.web;
 
+import com.TestApp.exception.UserNotFoundException;
 import com.TestApp.model.entities.UserEntity;
 import com.TestApp.repository.UserRepository;
 import org.springframework.web.bind.annotation.*;
@@ -24,5 +25,11 @@ public class UserController {
     @GetMapping("/users")
     public List<UserEntity> getAllUsers(){
         return userRepository.findAll();
+    }
+
+    @GetMapping("/user/{id}")
+    public UserEntity getUserById(@PathVariable Long id){
+        return userRepository.findById(id).
+                orElseThrow(() -> new UserNotFoundException(id));
     }
 }
