@@ -1,35 +1,36 @@
-import java.util.ArrayList;
-import java.util.List;
-
-
 
 class DoubleLinear {
 
     //Does not pass all tests on codewars due to "Max Buffer Size Reached (1.5 MiB)"
-    public static int dblLinear (int n) {
-        List<Integer> numbers = new ArrayList<>(List.of(1));
+    public static int dblLinear(int n) {
+        int[] numbers = new int[n + 1];
+
+        numbers[0] = 1;
 
         int x = 0;
         int y = 0;
 
-        while (numbers.size() <= n ) {
+        int counter = 1;
 
-            int nextX = 2 * numbers.get(x) + 1;
-            int nextY = 3 * numbers.get(y) + 1;
+        for (int i = 0; i < n; i++) {
+
+            int nextX = 2 * numbers[x] + 1;
+            int nextY = 3 * numbers[y] + 1;
 
             if (nextX <= nextY) {
-                numbers.add(nextX);
+                numbers[counter] = nextX;
                 x++;
+                counter++;
 
                 if (nextX == nextY) {
                     y++;
                 }
             } else {
-                numbers.add(nextY);
+                numbers[counter] = nextY;
                 y++;
+                counter++;
             }
         }
-        System.out.println(numbers);
-        return numbers.get(n);
+        return numbers[n];
     }
 }
