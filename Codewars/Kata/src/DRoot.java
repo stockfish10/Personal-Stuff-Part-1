@@ -1,7 +1,7 @@
 public class DRoot {
 
     public static void main(String[] args) {
-        System.out.println(digital_root(575740));
+        System.out.println(digital_root(493193));
     }
 
     public static int digital_root(int n) {
@@ -17,16 +17,13 @@ public class DRoot {
             int toAdd = currentNum % 10;
             sum+=toAdd;
             currentNum = currentNum/10;
+
+            if (currentNum <= 0 && sum >= 10) {
+                currentNum = sum;
+                sum = 0;
+            }
         }
 
-        int finalNum = 0;
-
-        while (sum > 0) {
-            int toAdd = sum % 10;
-            finalNum+=toAdd;
-            sum = sum/10;
-        }
-
-        return finalNum;
+        return sum;
     }
 }
