@@ -23,42 +23,53 @@ public class Task1 {
 
             int gameId = Integer.parseInt(rowParts[0].split("\\s+")[1]);
 
-            String[] subsetOfCubes = rowParts[1].split(";");
+            String[] subsetOfCubes = rowParts[1].split("; ");
 
-            boolean validGameId = isValidGameId(subsetOfCubes);
+            boolean gamePossible = true;
 
-            if (validGameId) {
+            gamePossible = isGamePossible(subsetOfCubes, gamePossible);
+
+
+            if (gamePossible) {
                 possibleIds.add(gameId);
             }
 
         }
-        System.out.println(possibleIds.stream().mapToInt(e -> e).sum());
+       System.out.println(possibleIds.stream().mapToInt(e -> e).sum());
     }
 
-    private static boolean isValidGameId(String[] subsetOfCubes) {
+    private static boolean isGamePossible(String[] subsetOfCubes, boolean gamePossible) {
         for (String subsetOfCube : subsetOfCubes) {
-            String[] cubeHand = subsetOfCube.trim().split(", ");
+            String [] partsOfHand = subsetOfCube.trim().split(", ");
 
-            for (String hand : cubeHand) {
-                int numberOfCubes = Integer.parseInt(hand.split("\\s+")[0]);
-                String color = hand.split("\\s+")[1];
+            gamePossible = checkHand(gamePossible, partsOfHand);
+        }
+        return gamePossible;
+    }
 
-                switch (color) {
-                    case "red":
-                        if (numberOfCubes > 12) {
-                            return false;
-                        }
-                    case "blue":
-                        if (numberOfCubes > 14) {
-                            return false;
-                        }
-                    case "green":
-                        if (numberOfCubes > 13) {
-                            return false;
-                        }
-                }
+    private static boolean checkHand(boolean gamePossible, String[] partsOfHand) {
+        for (String hand : partsOfHand) {
+            int numberOfCubesForCurrentHand = Integer.parseInt(hand.split("\\s+")[0].trim());
+            String colorOfCubes = hand.split("\\s+")[1].trim();
+
+            switch (colorOfCubes) {
+                case "red":
+                    if (numberOfCubesForCurrentHand > 12) {
+                        gamePossible = false;
+                    }
+                    break;
+                case "green":
+                    if (numberOfCubesForCurrentHand > 13) {
+                        gamePossible = false;
+                    }
+                    break;
+                case "blue":
+                    if (numberOfCubesForCurrentHand > 14) {
+                        gamePossible = false;
+                    }
+                    break;
             }
         }
-        return true;
+        return gamePossible;
     }
 }
