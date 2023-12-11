@@ -1,12 +1,11 @@
-package Day5;
+package Day6;
 
 import java.io.*;
 import java.util.Arrays;
-import java.util.List;
 
 public class Task1 {
     public static void main(String[] args) throws IOException {
-        File fp = new File("src/Day5/Input.txt");
+        File fp = new File("src/Day6/Input.txt");
         FileReader fr = new FileReader(fp);
         BufferedReader br = new BufferedReader(fr);
 
