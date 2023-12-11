@@ -14,7 +14,7 @@ public class Task1Obj {
 
         List<String> list = br.lines().toList();
 
-        List<Hand> hands = new ArrayList<>(list.stream().map(s -> new Hand(s, false)).toList());
+        List<Hand> hands = new ArrayList<>(list.stream().map(s -> new Hand(s, true)).toList());
 
         Collections.sort(hands);
 
@@ -70,7 +70,7 @@ public class Task1Obj {
                 boolean fullhouse = groups[groups.length-2] == 2;
                 boolean otherFullHouse = otherGroups[otherGroups.length-2] == 2;
 
-                if (fullhouse && otherFullHouse) {
+                if (fullhouse && !otherFullHouse) {
                     return 1;
                 }
                 if (!fullhouse && otherFullHouse) {
