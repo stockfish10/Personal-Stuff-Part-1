@@ -30,11 +30,6 @@ public class Task2 {
 
         while (!checkAllEndPoints(nodesToCheck, nodesToCheck.size())) {
             for (char direction : directions) {
-                for (int nodeIndex = 0; nodeIndex < nodesToCheck.size()-1; nodeIndex++) {
-                    String newNode = nodes.get(direction == 'L' ? nodes.get(nodesToCheck.get(nodeIndex)).L : nodes.get(nodesToCheck.get(nodeIndex)).R).mainPart;
-
-
-                }
                 steps++;
 
                 if (!checkAllEndPoints(nodesToCheck, nodesToCheck.size())){
