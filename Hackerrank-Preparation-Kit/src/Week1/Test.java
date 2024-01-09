@@ -1,31 +1,21 @@
 package Week1;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.Arrays.sort;
 
 public class Test {
     public static void main(String[] args) {
-
-        System.out.println(fibonacciModified(0,1,10));
-
+        System.out.println(findMedian(List.of(5,3,1,2,4)));
     }
-    public static int fibonacciModified(int t1, int t2, int n) {
-        // Write your code here
+    public static int findMedian(List<Integer> arr) {
 
-        int first = t1;
-        int second = t2;
 
-        for (int i = 0; i <= n-2; i++) {
-            int nextNum = 0;
+        List<Integer> myArr = arr.stream().sorted().collect(Collectors.toList());
 
-            if (i % 2 == 0) {
-                nextNum = first + (second*second);
-                first= nextNum;
-            } else {
-                nextNum = second + (first*first);
-                second = nextNum;
-            }
-        }
+        return myArr.get(myArr.size()/2);
 
-        return (n-2)%2==0 ? first : second;
     }
 }
